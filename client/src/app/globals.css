@@ -6,7 +6,7 @@
 *::before,
 *::after {
   /* the size of the box (width and height) includes the content, padding, and border. */
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 html,
@@ -18,4 +18,19 @@ body,
   @apply text-sm;
   @apply bg-gray-500;
   @apply text-gray-900;
+}
+
+/* Predefined breakpoint for Tailwind */
+@media (min-width: 768px) {
+  /* creates 8 rows, each with a height of 20vh */
+  .custom-grid-rows {
+    grid-template-rows: repeat(8, 20vh);
+  }
+}
+
+@media (min-width: 1280px) {
+  .custom-grid-rows {
+    
+    grid-template-rows: repeat(8, 7.5vh);
+  }
 }

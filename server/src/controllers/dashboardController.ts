@@ -57,7 +57,7 @@ export const getDashboardMetrics = async (
       purchaseSummary,
       expenseSummary,
       expenseByCategory,
-    })
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error retrieving dashboard metrics' });

@@ -36,7 +36,7 @@ export interface ExpenseByCategory {
 }
 export interface DashboardMetrics {
   popularProducts: Product[];
-  salesSummary: SalesSummary[];
+  saleSummary: SalesSummary[];
   purchaseSummary: PurchaseSummary[];
   expenseSummary: ExpenseSummary[];
   expenseByCategory: ExpenseByCategory[];
@@ -55,5 +55,6 @@ export const api = createApi({
     }),
   }),
 });
- 
+
+// Hooks
 export const { useGetDashboardMetricsQuery } = api;

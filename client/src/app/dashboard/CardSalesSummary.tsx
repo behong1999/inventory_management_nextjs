@@ -1,6 +1,7 @@
 'use client';
 import { SalesSummary, useGetDashboardMetricsQuery } from '@/state/api';
 import { TrendingUp } from 'lucide-react';
+import numeral from 'numeral';
 import React, { useState } from 'react';
 import {
   Bar,
@@ -64,13 +65,14 @@ const CardSalesSummary = () => {
               <div className='text-lg font-medium'>
                 <p className='text-xs text-gray-400'>Value</p>
                 <span className='text-2xl font-extrabold'>
-                  $
+                  {/* $
                   {(totalValueSum / 1000000).toLocaleString('en', {
                     maximumFractionDigits: 2,
                   })}
-                  m
+                  m */}
+                  {numeral(totalValueSum).format('$0.00a')}
                 </span>
-                <span className='text-green-500 text-sm ml-2'>  
+                <span className='text-green-500 text-sm ml-2'>
                   <TrendingUp className='inline w-4 h-4 mr-1' />
                   {averageChangePercentage.toFixed(2)}%
                 </span>
@@ -94,7 +96,7 @@ const CardSalesSummary = () => {
                 data={salesData}
                 margin={{ top: 0, right: 0, left: -25, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray='' vertical={false} />
+                <CartesianGrid vertical={false} />
                 <XAxis
                   dataKey='date'
                   tickFormatter={(value) => {
@@ -136,7 +138,7 @@ const CardSalesSummary = () => {
           {/* ========================== FOOTER ========================== */}
           <div>
             <hr />
-            <div className='flex justify-between items-center mt-6 text-sm px-7 mb-4'>
+            <div className='flex justify-between items-center mt-6 text-sm px-7 mb-6'>
               <p>{salesData.length || 0} days</p>
               <p className='text-sm'>
                 Highest Sales Date:{' '}

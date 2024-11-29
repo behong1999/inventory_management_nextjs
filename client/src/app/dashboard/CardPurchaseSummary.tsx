@@ -89,11 +89,11 @@ const CardPurchaseSummary = (props: Props) => {
             <ResponsiveContainer
               width='100%'
               height={chartHeight}
-              className='px-7'
+              className='px-5'
             >
               <AreaChart
                 data={sortedPurchaseData}
-                margin={{ top: 0, right: 0, left: -50, bottom: 0 }}
+                margin={{ top: 0, right: 0, left: -60, bottom: 0 }}
               >
                 <XAxis dataKey='date' tick={false} axisLine={false} />
                 <YAxis tick={false} tickLine={false} axisLine={false} />

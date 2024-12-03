@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const dashboardRoutes_1 = __importDefault(require("./routes/dashboardRoutes"));
+const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 /* CONFIGURATIONS */
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -24,6 +25,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello from server');
 });
 app.use('/dashboard', dashboardRoutes_1.default); // https://localhost:8000/dashboard
+app.use('/products', productRoutes_1.default); // https://localhost:8000/products
 /* SERVER */
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

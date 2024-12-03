@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dashboardRouter from './routes/dashboardRoutes';
+import productRouter from './routes/productRoutes';
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -22,6 +23,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.use('/dashboard', dashboardRouter); // https://localhost:8000/dashboard
+app.use('/products', productRouter); // https://localhost:8000/products
 
 /* SERVER */
 const port = process.env.PORT || 3001;

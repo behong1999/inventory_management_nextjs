@@ -6,16 +6,18 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dashboardRouter from './routes/dashboardRoutes';
 import productRouter from './routes/productRoutes';
+import userRouter from './routes/userRoutes';
 
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
-app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
-app.use(morgan('common'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(express.json()); // Parse incoming JSON requests
+app.use(helmet()); // Set secure HTTP headers
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' })); // Allow cross-origin resource sharing
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS) for requests from other origins
+app.use(morgan('common')); // Log HTTP requests 
+app.use(bodyParser.urlencoded({ extended: false })); // Parse URL-encoded data 
+
 
 /* ROUTES */
 app.get('/hello', (req, res) => {
@@ -24,6 +26,7 @@ app.get('/hello', (req, res) => {
 
 app.use('/dashboard', dashboardRouter); // https://localhost:8000/dashboard
 app.use('/products', productRouter); // https://localhost:8000/products
+app.use('/users', userRouter); // https://localhost:8000/users
 
 /* SERVER */
 const port = process.env.PORT || 3001;

@@ -85,7 +85,7 @@ const Products = () => {
                 <div className='text-sm text-gray-600 mt-1'>
                   Stock: {product.stockQuantity}
                 </div>
-                {product.rating && (
+                {product.rating !== undefined && (
                   <div className='flex items-center mt-2'>
                     <Rating rating={product.rating} />
                   </div>

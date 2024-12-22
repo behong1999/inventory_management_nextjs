@@ -49,10 +49,16 @@ export interface DashboardMetrics {
   expenseByCategory: ExpenseByCategory[];
 }
 
+export interface User {
+  userId: string;
+  name: string;
+  email: string;
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
   reducerPath: 'api',
-  tagTypes: ['DashboardMetrics', 'Products'], // used to configure caching and invalidation of cached data
+  tagTypes: ['DashboardMetrics', 'Products', 'Users'], // used to configure caching and invalidation of cached data
   endpoints: (builder) => ({
     getDashboardMetrics: builder.query<DashboardMetrics, void>({
       query: () => '/dashboard',
@@ -76,6 +82,10 @@ export const api = createApi({
       }),
       invalidatesTags: ['Products'], // Refetching Data Automatically when a Mutation is Successful
     }),
+    getUsers: builder.query<User[], void>({
+      query: () => "/users",
+      providesTags: ["Users"],
+    }),
   }),
 });
 
@@ -84,4 +94,5 @@ export const {
   useGetDashboardMetricsQuery,
   useGetProductsQuery,
   useAddProductMutation,
+  useGetUsersQuery
 } = api;

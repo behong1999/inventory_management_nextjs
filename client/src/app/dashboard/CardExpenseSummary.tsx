@@ -1,4 +1,5 @@
 import { ExpenseByCategory, useGetDashboardMetricsQuery } from '@/state/api';
+import { useMediaQuery } from '@mui/material';
 import { TrendingUp } from 'lucide-react';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
@@ -10,6 +11,8 @@ type ExpenseSums = {
 
 const CardExpenseSummary = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
+
+  const isMobile = useMediaQuery('(max-width:768px)');
   const expenseByCategorySummary = dashboardMetrics?.expenseByCategory || [];
   // console.log(expenseByCategorySummary);
 
@@ -64,12 +67,12 @@ const CardExpenseSummary = () => {
             {/* NOTE: flex-basis value set on the first flex item, 
             causing it to grow or shrink to fill the available space */}
             <div className='relative basis-3/5'>
-              <ResponsiveContainer width='100%' height={150}>
-                <PieChart>
+              <ResponsiveContainer width='100%' height={isMobile ? 120 : 100}>
+                <PieChart className='mt-5 md:mt-0'>
                   <Pie
                     data={expenseCategories}
-                    innerRadius={50}
-                    outerRadius={60}
+                    innerRadius={isMobile ? 50 : 38}
+                    outerRadius={isMobile ? 60 : 48}
                     fill='#8884d8'
                     dataKey='value'
                     nameKey='name'
@@ -85,7 +88,7 @@ const CardExpenseSummary = () => {
                   </Pie>
                 </PieChart>
               </ResponsiveContainer>
-              <div className='absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 text-center'>
+              <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center'>
                 <span className='font-bold text-xl'>
                   ${formattedTotalExpenses}
                 </span>
@@ -108,10 +111,10 @@ const CardExpenseSummary = () => {
             </ul>
           </div>
           {/* FOOTER */}
-          {/* <div>
+          <div>
             <hr />
             {expenseSummary && (
-              <div className='flex justify-between items-center px-7 mt-3 mb-4'>
+              <div className='flex justify-between items-center px-7 mt-2 mb-4'>
                 <div className='pt-2'>
                   <p className='text-sm'>
                     Average:{' '}
@@ -126,7 +129,7 @@ const CardExpenseSummary = () => {
                 </span>
               </div>
             )}
-          </div> */}
+          </div>
         </>
       )}
     </div>

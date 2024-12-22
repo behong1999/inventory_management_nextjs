@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createProduct = exports.getProducts = void 0;
+exports.addProduct = exports.getProducts = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -30,7 +30,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getProducts = getProducts;
-const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId, name, price, rating, stockQuantity } = req.body;
         const product = yield prisma.products.create({
@@ -48,4 +48,4 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({ message: 'Error creating product' });
     }
 });
-exports.createProduct = createProduct;
+exports.addProduct = addProduct;

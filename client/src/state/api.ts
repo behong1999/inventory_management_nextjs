@@ -68,7 +68,7 @@ export const api = createApi({
 
       providesTags: ['Products'],
     }),
-    createProduct: builder.mutation<Product, NewProduct>({
+    addProduct: builder.mutation<Product, NewProduct>({
       query: (newProduct) => ({
         url: '/products',
         method: 'POST',
@@ -83,5 +83,5 @@ export const api = createApi({
 export const {
   useGetDashboardMetricsQuery,
   useGetProductsQuery,
-  useCreateProductMutation,
+  useAddProductMutation,
 } = api;

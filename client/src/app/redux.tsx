@@ -1,28 +1,27 @@
-import { useRef } from 'react';
+import globalReducer from '@/state';
+import { api } from '@/state/api';
 import {
   combineReducers,
-  configureStore,
-  EnhancedStore,
+  configureStore
 } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { useRef } from 'react';
 import {
+  Provider,
   TypedUseSelectorHook,
   useDispatch,
   useSelector,
-  Provider,
 } from 'react-redux';
-import globalReducer from '@/state';
-import { api } from '@/state/api';
-import { setupListeners } from '@reduxjs/toolkit/query';
 
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
 } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';

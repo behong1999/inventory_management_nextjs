@@ -1,4 +1,5 @@
 import { useGetDashboardMetricsQuery } from '@/state/api';
+import { useMediaQuery } from '@mui/material';
 import { TrendingDown, TrendingUp } from 'lucide-react';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
@@ -16,23 +17,25 @@ type Props = {};
 const CardPurchaseSummary = (props: Props) => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
 
-  const [chartHeight, setChartHeight] = useState(200);
+  // const [chartHeight, setChartHeight] = useState(200);
 
-  useEffect(() => {
-    const updateChartHeight = () => {
-      // For screens larger than 768px{chartHeight}
-      if (window.innerWidth > 768) {
-        setChartHeight(100);
-      } else setChartHeight(200);
-    };
+  // useEffect(() => {
+  //   const updateChartHeight = () => {
+  //     // For screens larger than 768px{chartHeight}
+  //     if (window.innerWidth > 768) {
+  //       setChartHeight(120);
+  //     } else setChartHeight(200);
+  //   };
 
-    // Set initial height
-    updateChartHeight();
+  //   // Set initial height
+  //   updateChartHeight();
 
-    // Add event listener for resizing
-    window.addEventListener('resize', updateChartHeight);
-    return () => window.removeEventListener('resize', updateChartHeight);
-  }, []);
+  //   // Add event listener for resizing
+  //   window.addEventListener('resize', updateChartHeight);
+  //   return () => window.removeEventListener('resize', updateChartHeight);
+  // }, []);
+
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   const purchaseData = dashboardMetrics?.purchaseSummary.slice() || [];
   const sortedPurchaseData = purchaseData.sort(
@@ -88,8 +91,8 @@ const CardPurchaseSummary = (props: Props) => {
             {/* CHART */}
             <ResponsiveContainer
               width='100%'
-              height={chartHeight}
-              className='px-5'
+              height={isMobile ? 200 : 120}
+              className='p-2'
             >
               <AreaChart
                 data={sortedPurchaseData}

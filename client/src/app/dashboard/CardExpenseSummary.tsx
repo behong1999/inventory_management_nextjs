@@ -1,4 +1,7 @@
-import { ExpenseByCategory, useGetDashboardMetricsQuery } from '@/state/api';
+import {
+  ExpenseByCategorySummary,
+  useGetDashboardMetricsQuery,
+} from '@/state/api';
 import { useMediaQuery } from '@mui/material';
 import { TrendingUp } from 'lucide-react';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
@@ -13,7 +16,8 @@ const CardExpenseSummary = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
 
   const isMobile = useMediaQuery('(max-width:768px)');
-  const expenseByCategorySummary = dashboardMetrics?.expenseByCategory || [];
+  const expenseByCategorySummary =
+    dashboardMetrics?.expenseByCategorySummary || [];
   // console.log(expenseByCategorySummary);
 
   const expenseSummary = dashboardMetrics?.expenseSummary[0];
@@ -21,7 +25,7 @@ const CardExpenseSummary = () => {
   // NOTE: Sum the amounts for each category
   // E.g. {"Office Expenses": 48, "Professional Expenses": 78, "Salaries Expenses": 63}
   const expenseSums = expenseByCategorySummary.reduce(
-    (acc: ExpenseSums, item: ExpenseByCategory) => {
+    (acc: ExpenseSums, item: ExpenseByCategorySummary) => {
       const category = item.category + ' Expenses';
       const amount = parseInt(item.amount, 10);
       if (!acc[category]) {

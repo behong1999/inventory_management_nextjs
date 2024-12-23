@@ -38,13 +38,14 @@ const getDashboardMetrics = (req, res) => __awaiter(void 0, void 0, void 0, func
                 date: 'desc',
             },
         });
+        // Query raw data and then modify to the desired format
         const expenseByCategorySummaryRaw = yield prisma.expenseByCategory.findMany({
             take: 5,
             orderBy: {
                 date: 'desc',
             },
         });
-        // NOTE: Get the data in the wanted modifying format (data transformation in the back end itself)
+        // To avoid JSON serialization failure, always convert BigInt to string when working with Next.js
         const expenseByCategory = expenseByCategorySummaryRaw.map((item) => (Object.assign(Object.assign({}, item), { amount: item.amount.toString() })));
         res.json({
             popularProducts,

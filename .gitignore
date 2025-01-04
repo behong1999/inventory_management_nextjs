@@ -1,0 +1,14 @@
+# Exclude node_modules directories from both client and server
+client/node_modules/
+server/node_modules/
+
+# Exclude build output directories from both client and server
+client/dist/
+server/dist/
+
+# Exclude environment configuration files (e.g., sensitive credentials)
+client/.env/
+server/.env/
+
+# Exclude the Next.js build output directory
+client/.next/

@@ -2,7 +2,6 @@ import { useGetDashboardMetricsQuery } from '@/state/api';
 import { useMediaQuery } from '@mui/material';
 import { TrendingDown, TrendingUp } from 'lucide-react';
 import numeral from 'numeral';
-import { useEffect, useState } from 'react';
 import {
   Area,
   AreaChart,

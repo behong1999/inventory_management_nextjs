@@ -1,5 +1,5 @@
 import { LucideIcon } from 'lucide-react';
-import React, { Fragment } from 'react';
+import React, { Fragment, JSX } from 'react';
 
 type StatDetail = {
   title: string;

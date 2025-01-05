@@ -16,9 +16,8 @@ const CardExpenseSummary = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
 
   const isMobile = useMediaQuery('(max-width:768px)');
-  const expenseByCategorySummary =
-    dashboardMetrics?.expenseByCategorySummary || [];
-  // console.log(expenseByCategorySummary);
+  const expenseByCategorySummary = dashboardMetrics?.expenseByCategory || [];
+  console.log(expenseByCategorySummary);
 
   const expenseSummary = dashboardMetrics?.expenseSummary[0];
 

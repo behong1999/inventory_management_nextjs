@@ -7,7 +7,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 // Define the columns for the DataGrid
 // Read more: https://mui.com/x/react-data-grid/column-definition/
 const columns: GridColDef[] = [
-  { field: "productId", headerName: "ID", width: 90 },
+  { field: "productId", headerName: "ID", width: 300 },
   { field: "name", headerName: "Product Name", width: 200 },
   {
     field: "price",

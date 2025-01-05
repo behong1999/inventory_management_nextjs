@@ -15,14 +15,14 @@ export const getExpensesByCategory = async (
         },
       }
     );
-    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
+    const expenseByCategory = expenseByCategorySummaryRaw.map(
       (item) => ({
         ...item,
         amount: item.amount.toString(),
       })
     );
 
-    res.json(expenseByCategorySummary);
+    res.json(expenseByCategory);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving expenses by category' });
   }

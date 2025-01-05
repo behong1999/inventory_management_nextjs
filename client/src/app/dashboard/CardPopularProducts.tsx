@@ -2,12 +2,13 @@ import { useGetDashboardMetricsQuery } from '@/state/api';
 import { ShoppingBag } from 'lucide-react';
 import React from 'react';
 import Rating from '../(components)/Rating';
+import Image from 'next/image';
 
 const CardPopularProducts = () => {
   // Read more about Query Hook Return Values: https://redux-toolkit.js.org/rtk-query/usage/queries
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
   // console.log(dashboardMetrics);
-  
+
   return (
     <div className='row-span-3 xl:row-span-6 bg-white shadow-lg rounded-2xl pb-16'>
       {isLoading ? (
@@ -25,7 +26,16 @@ const CardPopularProducts = () => {
                 key={product.productId}
               >
                 <div className='flex items-center gap-3'>
-                  <div>img</div>
+                  {/* Get random image from S3 */}
+                  <Image
+                    src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${
+                      Math.floor(Math.random() * 3) + 1
+                    }.png`}
+                    alt={product.name}
+                    width={48}
+                    height={48}
+                    className='rounded-lg w-14 h-14'
+                  />
                   <div className='flex flex-col justify-between gap-1'>
                     <div className='font-bold text-gray-700'>
                       {product.name}

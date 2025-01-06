@@ -69,7 +69,7 @@ const Navbar = (props: Props) => {
           {/* USER IMAGE AND NAME */}
           <div className='flex items-center gap-3 cursor-pointer'>
           <Image
-              src="https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/profile.jpg"
+              src="https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/profile.png"
               alt="Profile"
               width={50}
               height={50}

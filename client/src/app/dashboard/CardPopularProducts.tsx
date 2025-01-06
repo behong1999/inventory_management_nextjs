@@ -1,13 +1,22 @@
 import { useGetDashboardMetricsQuery } from '@/state/api';
 import { ShoppingBag } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Rating from '../(components)/Rating';
 import Image from 'next/image';
 
 const CardPopularProducts = () => {
-  // Read more about Query Hook Return Values: https://redux-toolkit.js.org/rtk-query/usage/queries
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
-  // console.log(dashboardMetrics);
+  const [randomImages, setRandomImages] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (dashboardMetrics?.popularProducts) {
+      // Generate random image indices for products
+      const images = dashboardMetrics.popularProducts.map(
+        () => Math.floor(Math.random() * 3) + 1
+      );
+      setRandomImages(images);
+    }
+  }, [dashboardMetrics]);
 
   return (
     <div className='row-span-3 xl:row-span-6 bg-white shadow-lg rounded-2xl pb-16'>
@@ -20,17 +29,15 @@ const CardPopularProducts = () => {
           </h3>
           <hr />
           <div className='overflow-auto h-full'>
-            {dashboardMetrics?.popularProducts.map((product) => (
+            {dashboardMetrics?.popularProducts.map((product, index) => (
               <div
                 className='flex justify-between items-center px-5 py-7 border-b-2'
                 key={product.productId}
               >
                 <div className='flex items-center gap-3'>
-                  {/* Get random image from S3 */}
+                  {/* Use client-side random image */}
                   <Image
-                    src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${
-                      Math.floor(Math.random() * 3) + 1
-                    }.png`}
+                    src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${randomImages[index]}.png`}
                     alt={product.name}
                     width={48}
                     height={48}

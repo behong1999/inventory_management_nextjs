@@ -84,7 +84,7 @@ const Sidebar = () => {
           alt="hongstock-logo"
           width={27}
           height={27}
-          className="rounded w-8"
+          className="w-8 bg-white"
         />
 
         <h1

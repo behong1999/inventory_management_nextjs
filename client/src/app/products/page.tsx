@@ -1,10 +1,10 @@
 'use client';
 import { useAddProductMutation, useGetProductsQuery } from '@/state/api';
 import { PlusCircleIcon, SearchIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from '@/app/(components)/Header';
 import Rating from '@/app/(components)/Rating';
-import AddProductModal from './AddProductModal';
+import AddProductModal from '@/app/products/AddProductModal';
 import Image from 'next/image';
 
 type ProductFormData = {
@@ -17,21 +17,12 @@ type ProductFormData = {
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [randomImages, setRandomImages] = useState<number[]>([]);
 
   const {
     data: products,
     isLoading,
     isError,
   } = useGetProductsQuery(searchTerm);
-
-  useEffect(() => {
-    if (products) {
-      // Generate random image indices for products
-      const images = products.map(() => Math.floor(Math.random() * 3) + 1);
-      setRandomImages(images);
-    }
-  }, [products]);
 
   const [addProduct] = useAddProductMutation();
   const handleAddProduct = async (productData: ProductFormData) => {
@@ -81,20 +72,20 @@ const Products = () => {
         {isLoading ? (
           <div>Loading...</div>
         ) : (
-          products.map((product, index) => (
+          products.map((product) => (
             <div
               key={product.productId}
               className='shadow rounded-md border border-gray-200 p-4 max-w-full w-full mx-auto' // "max-w-full w-full" prevents overflow and fills the available space
             >
               <div className='flex flex-col items-center'>
-                <Image
+              <Image
                   src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${
-                   randomImages[index]
+                    Math.floor(Math.random() * 3) + 1
                   }.png`}
                   alt={product.name}
                   width={150}
                   height={150}
-                  className='mb-3 rounded-2xl w-36 h-36'
+                  className="mb-3 rounded-2xl w-36 h-36"
                 />
                 <h3 className='text-lg text-gray-900 font-semibold'>
                   {product.name}

@@ -1,22 +1,13 @@
 import { useGetDashboardMetricsQuery } from '@/state/api';
 import { ShoppingBag } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Rating from '../(components)/Rating';
 import Image from 'next/image';
 
 const CardPopularProducts = () => {
+  // Read more about Query Hook Return Values: https://redux-toolkit.js.org/rtk-query/usage/queries
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
-  const [randomImages, setRandomImages] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (dashboardMetrics?.popularProducts) {
-      // Generate random image indices for products
-      const images = dashboardMetrics.popularProducts.map(
-        () => Math.floor(Math.random() * 3) + 1
-      );
-      setRandomImages(images);
-    }
-  }, [dashboardMetrics]);
+  // console.log(dashboardMetrics);
 
   return (
     <div className='row-span-3 xl:row-span-6 bg-white shadow-lg rounded-2xl pb-16'>
@@ -29,17 +20,19 @@ const CardPopularProducts = () => {
           </h3>
           <hr />
           <div className='overflow-auto h-full'>
-            {dashboardMetrics?.popularProducts.map((product, index) => (
+            {dashboardMetrics?.popularProducts.map((product) => (
               <div
                 className='flex justify-between items-center px-5 py-7 border-b-2'
                 key={product.productId}
               >
                 <div className='flex items-center gap-3'>
-                  {/* Use client-side random image */}
+                  {/* Get Random image from S3 */}
                   <Image
-                    src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${randomImages[index]}.png`}
+                    src={`https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/product${
+                      Math.floor(Math.random() * 3) + 1
+                    }.png`}
                     alt={product.name}
-                    width={48}
+                    width={60}
                     height={48}
                     className='rounded-lg w-14 h-14'
                   />

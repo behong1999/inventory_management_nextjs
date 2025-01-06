@@ -71,7 +71,7 @@ const CardExpenseSummary = () => {
             causing it to grow or shrink to fill the available space */}
             <div className='relative basis-3/5'>
               <ResponsiveContainer width='100%' height={isMobile ? 120 : 100}>
-                <PieChart className='mt-5 md:mt-0'>
+                <PieChart className='mt-5 md:mt-1'>
                   <Pie
                     data={expenseCategories}
                     innerRadius={isMobile ? 50 : 38}

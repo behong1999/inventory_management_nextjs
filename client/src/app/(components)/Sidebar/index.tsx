@@ -81,7 +81,7 @@ const Sidebar = () => {
       >
         <Image
           src="https://s3-inventorymanagement-practice.s3.us-east-1.amazonaws.com/logo.png"
-          alt="hongstock-logo"
+          alt="invstock-logo"
           width={27}
           height={27}
           className="w-8 bg-white"

@@ -1,6 +1,6 @@
 # Inventory Management - INVSTOCK
 
-This is an inventory management application built with **Next.js**, **TypeScript**, **Tailwind**, **Postgres**, and various other tools and libraries to provide a smooth user experience and deployed on **AWS** (EC2, RDS, S3, and Amplify).
+This is an inventory management application built with **Next.js**, **TypeScript**, **Tailwind**, **Postgres**, and various other tools and libraries to provide a smooth user experience and deployed on **AWS (EC2, RDS, S3, and Amplify)**.
 
 ## Technologies Used For Client Side
 

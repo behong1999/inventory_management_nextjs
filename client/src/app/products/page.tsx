@@ -83,7 +83,7 @@ const Products = () => {
                     Math.floor(Math.random() * 3) + 1
                   }.png`}
                   alt={product.name}
-                  width={150}
+                  width={250}
                   height={150}
                   className="mb-3 rounded-2xl w-36 h-36"
                 />

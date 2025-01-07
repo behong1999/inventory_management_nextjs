@@ -56,10 +56,9 @@ const Expenses = () => {
         const displayedCategory =
           data.category === selectedCategory || selectedCategory === 'All';
         const dataDate = parseDate(data.date);
-        const displayDate =
-          (dataDate >= startDate && dataDate <= endDate) ||
-          !startDate ||
-          !endDate;
+        const isAfterStartDate = startDate ? dataDate >= startDate : true;
+        const isBeforeEndDate = endDate ? dataDate <= endDate : true;
+        const displayDate = isAfterStartDate && isBeforeEndDate;
         return displayDate && displayedCategory;
       })
       .reduce((acc: AggregatedData, data: ExpenseByCategorySummary) => {

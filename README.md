@@ -40,7 +40,7 @@ This is a responsive inventory management application built with **Next.js**, **
 
 ## How it works
 - **Custom VPC**: Hosts a public and private subnet. The public subnet connects to the internet gateway, while the private subnet routes through the public subnet for secure backend access.
-- **EC2 & RDS**: Backend logic runs on EC2, which interacts with the PostgreSQL database hosted on RDS in the private subnet.
+- **EC2 & RDS**: Backend logic runs on EC2, which interacts with the PostgreSQL database hosted on RDS in the private subnet. In addition, having two private subnets in different AZs ensures that both the primary and standby RDS instances are isolated within their respective subnets in different availability zones, supporting automatic failover.
 - **Amplify & API Gateway**: The Next.js frontend is hosted on Amplify, which communicates with the API Gateway to send requests to the backend.
 - **S3**: Users directly access static assets (e.g., images) stored in S3 through pre-signed URLs or public access configurations.
 

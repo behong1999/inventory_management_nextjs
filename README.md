@@ -38,10 +38,17 @@ This is a responsive inventory management application built with **Next.js**, **
 ### [AWS Architecture Diagram](https://lucid.app/lucidchart/edfdfa57-5d01-429a-b365-f69de0cd8fe1/edit?viewport_loc=830%2C-187%2C2127%2C996%2C0_0&invitationId=inv_2138dc74-5c10-4dcd-bd63-9acc07a0abe2)
 <img src="https://github.com/user-attachments/assets/640fc9b2-acf9-42ab-b142-3ff080fcd873" alt="Database Diagram" width="700"/>
 
-### How it works
+## How it works
 - **Custom VPC**: Hosts a public and private subnet. The public subnet connects to the internet gateway, while the private subnet routes through the public subnet for secure backend access.
 - **EC2 & RDS**: Backend logic runs on EC2, which interacts with the PostgreSQL database hosted on RDS in the private subnet.
 - **Amplify & API Gateway**: The Next.js frontend is hosted on Amplify, which communicates with the API Gateway to send requests to the backend.
 - **S3**: Users directly access static assets (e.g., images) stored in S3 through pre-signed URLs or public access configurations.
 
 🠊 Flow: Users access the frontend → Amplify calls API Gateway → Gateway routes requests to EC2 → EC2 interacts with RDS → Responses flow back to Amplify.
+
+## Links
+### Link to the inventory management dashboard
+https://main.d33si7jc5zmcy1.amplifyapp.com/dashboard
+
+### Link to demo video
+https://youtu.be/XLUIrPgUqI0 

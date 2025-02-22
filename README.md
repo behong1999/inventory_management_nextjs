@@ -46,9 +46,5 @@ This is a responsive inventory management application built with **Next.js**, **
 
 🠊 Flow: Users access the frontend → Amplify calls API Gateway → Gateway routes requests to EC2 → EC2 interacts with RDS → Responses flow back to Amplify.
 
-## Links
-### Link to the inventory management dashboard
-https://main.d33si7jc5zmcy1.amplifyapp.com/dashboard
-
 ### Link to demo video
 https://youtu.be/XLUIrPgUqI0 

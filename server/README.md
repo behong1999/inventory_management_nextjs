@@ -79,10 +79,10 @@ Whereas, npm run seed to populate/initialize the database with mock data
 nano .env
 ```
 
-# [PASSWORD] with the password for PostgreSQL database user (default is 'postgres' unless changed).
-# [ENDPOINT] with the RDS endpoint found in the AWS RDS console under the "Connectivity & Security" tab.
-# [PORT] with the port for database also found in the AWS RDS console under the "Connectivity & Security" tab (default is 5432).
-# [NAME] with the name of database found in the AWS RDS console under the "Configuration" tab.
+- **PASSWORD** with the password for PostgreSQL database user (default is 'postgres' unless changed).
+- **ENDPOINT** with the RDS endpoint found in the AWS RDS console under the "Connectivity & Security" tab.
+- **PORT** with the port for database also found in the AWS RDS console under the "Connectivity & Security" tab (default is 5432).
+- **NAME** with the name of database found in the AWS RDS console under the "Configuration" tab.
 ```
 DATABASE_URL="postgresql://postgres:[PASSWORD]@[ENDPOINT]:[PORT]/[NAME]?schema=public"
 PORT=80
@@ -109,7 +109,7 @@ npm i pm2 -g
 module.exports = { apps : [{ name: 'inventory-management', script: 'npm', args: 'run dev', env: { NODE_ENV: 'development', ENV_VAR1: 'environment-variable', } }], };
 ```
 
-- **Modify the ecosystem file if necessary:**
+- **Modify the ecosystem file if necessary so that we can use pm which will run application for us:**
 
 ```
 nano ecosystem.config.js

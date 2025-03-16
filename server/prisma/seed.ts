@@ -1,6 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import fs from "fs";
-import path from "path";
+import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
+
 const prisma = new PrismaClient();
 
 async function deleteAllData(orderedFileNames: string[]) {
@@ -23,25 +24,25 @@ async function deleteAllData(orderedFileNames: string[]) {
 }
 
 async function main() {
-  const dataDirectory = path.join(__dirname, "seedData");
+  const dataDirectory = path.join(__dirname, 'seedData');
 
   const orderedFileNames = [
-    "products.json",
-    "expenseSummary.json",
-    "sales.json",
-    "salesSummary.json",
-    "purchases.json",
-    "purchaseSummary.json",
-    "users.json",
-    "expenses.json",
-    "expenseByCategory.json",
+    'products.json',
+    'expenseSummary.json',
+    'sales.json',
+    'salesSummary.json',
+    'purchases.json',
+    'purchaseSummary.json',
+    'users.json',
+    'expenses.json',
+    'expenseByCategory.json',
   ];
 
   await deleteAllData(orderedFileNames);
 
   for (const fileName of orderedFileNames) {
     const filePath = path.join(dataDirectory, fileName);
-    const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     const modelName = path.basename(fileName, path.extname(fileName));
     const model: any = prisma[modelName as keyof typeof prisma];
 
